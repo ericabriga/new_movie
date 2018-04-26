@@ -3,6 +3,7 @@ package com.qa.interoperability;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import com.qa.business.service.IMovieService;
@@ -18,6 +19,14 @@ public class MovieEndPoint {
 	@Produces ({"application/json"})
 	public String GetAllMovies() {
 		return service.getAllMovies();
+
+	}
+	
+	@GET  //postman calls obj layer repo db entity manag db conv tabl obj conv movie jsn interoper layer 
+	@Path("/json/{id}")
+	@Produces ({"application/json"})
+	public String GetAMovie(@PathParam("id")Long id) {
+		return service.getAMovie(id);
 
 	}
 }
